@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+  ~ Hibernate, Relational Persistence for Idiomatic Java
+  ~
+  ~ License: GNU Lesser General Public License (LGPL), version 2.1 or later.
+  ~ See the lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>.
+  -->
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping >
+    <class name="hibernate.pojo.Student" table="_student" lazy="true">
+    	<id name="id" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="sname" column="sname"/>
+        <!-- 关联的配置 一方 
+			name 表示集合的名称
+			table="stu_course" 多对多 中间表名为 stu_course
+			cascade 级联
+		-->
+        <set name="courses" table="stu_course"  cascade="save-update">
+        	<!-- 设置外键的字段为emp_dep_id 在实体类中无需对应 -->
+            <key column="studentId"/> 
+            <many-to-many class="hibernate.pojo.Course" column="courseId"></many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

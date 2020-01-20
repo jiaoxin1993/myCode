@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+  ~ Hibernate, Relational Persistence for Idiomatic Java
+  ~
+  ~ License: GNU Lesser General Public License (LGPL), version 2.1 or later.
+  ~ See the lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>.
+  -->
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping >
+	<!-- 这些属性说明了实体类 pojo.User 和表_user进行对应 -->
+    <class name="hibernate.pojo.User" table="_user" lazy="true">
+    	<!-- 主键映射 主键生成策略为uuid-->
+        <id type="string" name="id" column="id" length="64">
+        	<generator class="uuid"></generator>
+        </id>
+        <!-- 普通字段映射 -->
+        <property name="name" column="name" length="50" not-null="true"></property>
+        <property name="birthday" column="birthday" length="20" type="java.sql.Date"></property>
+    </class>
+</hibernate-mapping>
